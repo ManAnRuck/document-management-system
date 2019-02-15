@@ -1,9 +1,5 @@
 // GraphQl
-import {
-  MeComponent,
-  meQuery,
-  OAuthAccountsComponent,
-} from '@docms/controller';
+import { MeComponent, meQuery } from '@docms/controller';
 import get from 'lodash.get';
 import { PureComponent } from 'react';
 
@@ -42,22 +38,6 @@ export default class Index extends PureComponent {
                   {isLoggedIn && (
                     <li key={data!.me!.id}>
                       <div>Test 1</div>
-                      <OAuthAccountsComponent fetchPolicy="network-only">
-                        {({
-                          data: oData,
-                          loading: oLoading,
-                          error: oError,
-                        }) => {
-                          if (oError) {
-                            return null;
-                          }
-                          if (oLoading) {
-                            return <div>loading…</div>;
-                          }
-
-                          return <div>{JSON.stringify(oData)}</div>;
-                        }}
-                      </OAuthAccountsComponent>
                     </li>
                   )}
                 </div>
