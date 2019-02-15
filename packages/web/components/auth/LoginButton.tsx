@@ -1,4 +1,4 @@
-import { OAuthButton } from '@myproject/ui';
+import { OAuthButton } from '@docms/ui';
 import Link from 'next/link';
 import * as React from 'react';
 import { Button, Divider, Header, Modal } from 'semantic-ui-react';

@@ -1,5 +1,5 @@
-import { registerValidationSchema } from '@myproject/common';
-import { InputField } from '@myproject/ui';
+import { registerValidationSchema } from '@docms/common';
+import { InputField } from '@docms/ui';
 import { Field, FormikErrors, FormikProps, withFormik } from 'formik';
 import * as React from 'react';
 import { Button, Form } from 'semantic-ui-react';

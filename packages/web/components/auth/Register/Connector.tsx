@@ -1,4 +1,4 @@
-import { meQuery, RegisterController } from '@myproject/controller';
+import { meQuery, RegisterController } from '@docms/controller';
 import Router from 'next/router';
 import * as React from 'react';
 import { RegisterForm } from './Form';

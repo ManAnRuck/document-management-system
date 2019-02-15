@@ -3,7 +3,7 @@ import {
   MeComponent,
   meQuery,
   OAuthAccountsComponent,
-} from '@myproject/controller';
+} from '@docms/controller';
 import get from 'lodash.get';
 import { PureComponent } from 'react';
 

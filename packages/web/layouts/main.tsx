@@ -1,4 +1,4 @@
-import { LogoutComponent, MeComponent } from '@myproject/controller';
+import { LogoutComponent, MeComponent } from '@docms/controller';
 import get from 'lodash.get';
 import Link from 'next/link';
 import { SingletonRouter, withRouter } from 'next/router';

@@ -1,4 +1,4 @@
-import { add } from '@myproject/common';
+import { add } from '@docms/common';
 import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Platform, Text, View } from 'react-native';
@@ -9,7 +9,7 @@ import styled from 'styled-components/native';
 import { client } from './src/graphql/initApollo';
 
 // Components
-import { UsersComponent } from '@myproject/controller';
+import { UsersComponent } from '@docms/controller';
 
 const instructions = Platform.select({
   android:

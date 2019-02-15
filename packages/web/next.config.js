@@ -10,9 +10,9 @@ const nextConfig = {
       ...config.resolve.alias,
       '../../theme.config$': path.resolve('./assets/styles/theme.config'),
       'styled-components': require.resolve('styled-components'),
-      '@myproject/common': require.resolve('@myproject/common'),
-      '@myproject/controller': require.resolve('@myproject/controller'),
-      '@myproject/ui': require.resolve('@myproject/ui'),
+      '@docms/common': require.resolve('@docms/common'),
+      '@docms/controller': require.resolve('@docms/controller'),
+      '@docms/ui': require.resolve('@docms/ui'),
     };
 
     config.module.rules = [
@@ -42,9 +42,9 @@ module.exports = withPlugins(
       withTM,
       {
         transpileModules: [
-          '@myproject/common',
-          '@myproject/controller',
-          '@myproject/ui',
+          '@docms/common',
+          '@docms/controller',
+          '@docms/ui',
         ],
       },
     ],

@@ -1,5 +1,5 @@
 {
-  "name": "@myproject/server",
+  "name": "@docms/server",
   "version": "1.0.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,7 +14,7 @@
     "pre-commit": "yarn lint && yarn typecheck"
   },
   "dependencies": {
-    "@myproject/common": "1.0.0",
+    "@docms/common": "1.0.0",
     "apollo-server": "^2.4.0",
     "apollo-server-express": "^2.4.0",
     "bcryptjs": "^2.4.3",
