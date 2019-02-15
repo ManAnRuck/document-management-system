@@ -4,7 +4,7 @@ module.exports = {
     "port": 5432,
     "username": "manuelruck",
     "password": "",
-    "database": "myproject",
+    "database": "dms",
     "synchronize": true,
     "logging": false,
     "entities": [
