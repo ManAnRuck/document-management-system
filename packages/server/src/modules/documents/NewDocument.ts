@@ -11,30 +11,39 @@ export default class NewDocument {
     @Arg('title') title: string,
     @Arg('tags', () => String, { nullable: true }) tags: string[] = [],
   ): Promise<Document> {
-    // TODO upsert tags with return Tag[]
-    const existingTags = await Tag.createQueryBuilder()
-      .where('title IN (:...tags)', { tags })
-      .getMany();
+    try {
+      console.log('SERVER: CREATE NEW DOCUMENT', { title, tags });
+      // TODO upsert tags with return Tag[]
+      let existingTags: Tag[] = [];
 
-    let newTags = tags
-      .filter(
-        tag => !existingTags.some(({ title: tagTitle }) => tagTitle === tag),
-      )
-      .map(tag => {
-        const newTag = new Tag();
-        newTag.title = tag;
-        return newTag;
-      });
+      if (tags.length) {
+        existingTags = await Tag.createQueryBuilder()
+          .where('title IN (:...tags)', { tags })
+          .getMany();
+      }
 
-    if (newTags.length) {
-      newTags = await Promise.all(newTags.map(tag => tag.save()));
+      let newTags = tags
+        .filter(
+          tag => !existingTags.some(({ title: tagTitle }) => tagTitle === tag),
+        )
+        .map(tag => {
+          const newTag = new Tag();
+          newTag.title = tag;
+          return newTag;
+        });
+
+      if (newTags.length) {
+        newTags = await Promise.all(newTags.map(tag => tag.save()));
+      }
+
+      const document = Document.create();
+      document.title = title;
+      document.tags = [...newTags, ...existingTags];
+      console.log('SERVER: NEW DOCUMENT', document);
+      return document.save();
+    } catch (error) {
+      console.log('', error);
+      return Document.create();
     }
-
-    const document = Document.create();
-    document.title = title;
-    document.tags = [...existingTags, ...newTags];
-    document.save();
-
-    return document;
   }
 }

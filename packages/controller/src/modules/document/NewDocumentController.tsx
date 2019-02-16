@@ -25,6 +25,7 @@ export class NewDocumentController extends React.PureComponent<Props> {
       <NewDocumentComponent>
         {mutation => {
           const submit = async (values: FormValues) => {
+            console.log(values);
             try {
               await mutation({
                 variables: {
@@ -37,6 +38,7 @@ export class NewDocumentController extends React.PureComponent<Props> {
               this.props.succeded();
               return null;
             } catch (err) {
+              console.log('new Doc error', err);
               const errors: Errors = {};
               err.graphQLErrors.forEach(
                 ({
