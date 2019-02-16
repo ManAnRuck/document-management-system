@@ -4,6 +4,33 @@ export type Maybe<T> = T | null;
 // Documents
 // ====================================================
 
+export type NewDocumentVariables = {
+  title: string;
+  tags?: Maybe<string[]>;
+};
+
+export type NewDocumentMutation = {
+  __typename?: 'Mutation';
+
+  newDocument: NewDocumentNewDocument;
+};
+
+export type NewDocumentNewDocument = {
+  __typename?: 'Document';
+
+  id: string;
+
+  title: string;
+
+  tags: Maybe<NewDocumentTags[]>;
+};
+
+export type NewDocumentTags = {
+  __typename?: 'Tag';
+
+  title: string;
+};
+
 export type LogoutVariables = {};
 
 export type LogoutMutation = {
@@ -72,6 +99,54 @@ import gql from 'graphql-tag';
 // Components
 // ====================================================
 
+export const NewDocumentDocument = gql`
+  mutation newDocument($title: String!, $tags: [String!]) {
+    newDocument(title: $title, tags: $tags) {
+      id
+      title
+      tags {
+        title
+      }
+    }
+  }
+`;
+export class NewDocumentComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<NewDocumentMutation, NewDocumentVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<NewDocumentMutation, NewDocumentVariables>
+        mutation={NewDocumentDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type NewDocumentProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<NewDocumentMutation, NewDocumentVariables>
+> &
+  TChildProps;
+export type NewDocumentMutationFn = ReactApollo.MutationFn<
+  NewDocumentMutation,
+  NewDocumentVariables
+>;
+export function NewDocumentHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        NewDocumentMutation,
+        NewDocumentVariables,
+        NewDocumentProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    NewDocumentMutation,
+    NewDocumentVariables,
+    NewDocumentProps<TChildProps>
+  >(NewDocumentDocument, operationOptions);
+}
 export const LogoutDocument = gql`
   mutation Logout {
     logout

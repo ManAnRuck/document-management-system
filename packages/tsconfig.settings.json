@@ -19,6 +19,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noLib": false,
-    "lib": ["es6"]
+    "lib": ["es2017", "dom"]
   }
 }
