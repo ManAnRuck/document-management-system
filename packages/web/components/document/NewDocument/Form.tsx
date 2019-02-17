@@ -1,4 +1,4 @@
-// import { registerValidationSchema } from '@docms/common';
+import { newDocumentValidationSchema } from '@docms/common';
 import { InputField } from '@docms/ui';
 import { Field, FormikErrors, FormikProps, withFormik } from 'formik';
 import * as React from 'react';
@@ -31,31 +31,23 @@ export interface Props {
 class Cmp extends React.Component<
   FormikProps<FormValues & FormErrors> & Props
 > {
-  public state = {
-    tags: this.props.tags.map(({ title }) => ({
-      text: title,
-      value: title,
-    })),
-  };
-
   public handleAddition = (_: any, { value }: DropdownProps) => {
-    console.log('handleAddition', value);
+    const { setStatus, status } = this.props;
     const newTag: DropdownItemProps = { text: value, value: value as string };
-    this.setState({
-      tags: [...this.state.tags, newTag],
+    setStatus({
+      ...status,
+      tags: [...status.tags, newTag],
     });
   };
 
   public handleChange = (_: any, { value }: DropdownProps) => {
-    const { setFieldValue } = this.props;
-    console.log('handleChange', value);
+    const { setFieldValue, setStatus, status } = this.props;
     setFieldValue('tags', value);
-    return this.setState({ currentValue: value as string });
+    return setStatus({ ...status, currentValue: value as string });
   };
 
   public render() {
-    const { handleSubmit, errors } = this.props;
-
+    const { handleSubmit, errors, status } = this.props;
     return (
       <Form
         onSubmit={handleSubmit}
@@ -73,7 +65,7 @@ class Cmp extends React.Component<
           search
           selection
           allowAdditions
-          options={this.state.tags}
+          options={status.tags}
           onAddItem={this.handleAddition}
           onChange={this.handleChange}
         />
@@ -86,17 +78,22 @@ class Cmp extends React.Component<
 }
 
 export const RegisterForm = withFormik<Props, FormValues>({
-  // validationSchema: registerValidationSchema,
+  validationSchema: newDocumentValidationSchema,
+  mapPropsToStatus: props => ({
+    tags: props.tags.map(({ title }) => ({
+      text: title,
+      value: title,
+    })),
+    currentValue: [],
+  }),
   mapPropsToValues: () => ({ title: '', tags: [] }),
-  handleSubmit: async (
-    values,
-    { props, setErrors, setValues, setFormikState },
-  ) => {
+  handleSubmit: async (values, { props, setErrors, setValues, resetForm }) => {
     const errors = await props.submit(values);
     if (errors) {
       setErrors(errors);
     } else {
       setValues({ title: '', tags: [] });
+      resetForm();
     }
   },
 })(Cmp);

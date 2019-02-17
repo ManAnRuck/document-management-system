@@ -15,7 +15,6 @@ export class NewDocumentConnector extends React.PureComponent {
     return (
       <AllTagsComponent>
         {({ data }) => {
-          console.log('allTags', data);
           return (
             <NewDocumentController
               succeded={this.succeded}

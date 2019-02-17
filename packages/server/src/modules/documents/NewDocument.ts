@@ -12,7 +12,6 @@ export default class NewDocument {
     @Arg('tags', () => String, { nullable: true }) tags: string[] = [],
   ): Promise<Document> {
     try {
-      console.log('SERVER: CREATE NEW DOCUMENT', { title, tags });
       // TODO upsert tags with return Tag[]
       let existingTags: Tag[] = [];
 
@@ -39,7 +38,6 @@ export default class NewDocument {
       const document = Document.create();
       document.title = title;
       document.tags = [...newTags, ...existingTags];
-      console.log('SERVER: NEW DOCUMENT', document);
       return document.save();
     } catch (error) {
       console.log('', error);
