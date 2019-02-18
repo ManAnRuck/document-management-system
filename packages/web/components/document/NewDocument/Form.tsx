@@ -52,7 +52,7 @@ class Cmp extends React.Component<
       <Form
         onSubmit={handleSubmit}
         error={!!errors}
-        data-testid="register-form"
+        data-testid="newDocument-form"
       >
         {errors.form && (
           <Message negative={!!errors.form}>{errors.form}</Message>
@@ -80,10 +80,13 @@ class Cmp extends React.Component<
 export const RegisterForm = withFormik<Props, FormValues>({
   validationSchema: newDocumentValidationSchema,
   mapPropsToStatus: props => ({
-    tags: props.tags.map(({ title }) => ({
-      text: title,
-      value: title,
-    })),
+    tags:
+      (props.tags &&
+        props.tags.map(({ title }) => ({
+          text: title,
+          value: title,
+        }))) ||
+      [],
     currentValue: [],
   }),
   mapPropsToValues: () => ({ title: '', tags: [] }),

@@ -9,11 +9,11 @@ export default () => (
     <NewDocumentConnector />
     <DocumentsComponent>
       {({ data }) => {
-        if (!data) {
+        if (!data || !data.documents) {
           return null;
         }
         return (
-          <List celled>
+          <List celled data-testid="docuemts-list">
             {data.documents.map(({ id, title, tags }) => (
               <List.Item key={id}>
                 <List.Content>
