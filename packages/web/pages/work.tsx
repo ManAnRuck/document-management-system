@@ -1,6 +1,6 @@
 import React from 'react';
 import Page from '../layouts/main';
-import { TestComponent } from '@myproject/ui';
+import { TestComponent } from '@docms/ui';
 
 export default () => (
   <Page>
