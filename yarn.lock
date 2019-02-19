@@ -5233,7 +5233,7 @@ await-to-js@^2.0.1:
   resolved "https://registry.yarnpkg.com/await-to-js/-/await-to-js-2.1.1.tgz#c2093cd5a386f2bb945d79b292817bbc3f41b31b"
   integrity sha512-CHBC6gQGCIzjZ09tJ+XmpQoZOn4GdWePB4qUweCaKNJ0D3f115YdhmYVTZ4rMVpiJ3cFzZcTYK1VMYEICV4YXw==
 
-awesome-typescript-loader@5.2.1, awesome-typescript-loader@^5.2.1:
+awesome-typescript-loader@5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/awesome-typescript-loader/-/awesome-typescript-loader-5.2.1.tgz#a41daf7847515f4925cdbaa3075d61f289e913fc"
   integrity sha512-slv66OAJB8orL+UUaTI3pKlLorwIvS4ARZzYR9iJJyGsEgOqueMfOMdKySWzZ73vIkEe3fcwFgsKMg4d8zyb1g==
@@ -15279,7 +15279,7 @@ react-devtools-core@^3.4.2:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-docgen-typescript-loader@3.0.1, react-docgen-typescript-loader@^3.0.1:
+react-docgen-typescript-loader@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.0.1.tgz#889aa472450c8db82ea0355656a307806ec74e77"
   integrity sha512-SAVMFdW5p76pVMS6c7Jl1mGM5EZLVBWJ+rfoTvEaC2SeDgSFflnkM8eJGZVhty+7FSefvOJcBBz2rMkciphERA==
@@ -18056,11 +18056,6 @@ typescript-babel-jest@1.0.6:
     app-root-path "2.0.1"
     babel-jest "20.0.3"
     typescript "^2.4.1"
-
-typescript-plugin-styled-components@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/typescript-plugin-styled-components/-/typescript-plugin-styled-components-1.2.0.tgz#8799371eb233f243c534f13fbc51eeb587d9c569"
-  integrity sha512-nJco2kUnOyiwK+MTkQ05uhrRBxmJPmdjztYKuHYxqntEI6E4S5jMItVv7Dsapq4WGdDgN49/j9bIAx/+s1vHBA==
 
 typescript@3.1.6:
   version "3.1.6"
