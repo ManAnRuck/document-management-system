@@ -1,5 +1,5 @@
 import { newDocumentValidationSchema } from '@docms/common';
-import { InputField } from '@docms/ui';
+import { InputField, Dropzone } from '@docms/ui';
 import { Field, FormikErrors, FormikProps, withFormik } from 'formik';
 import * as React from 'react';
 import {
@@ -69,6 +69,7 @@ class Cmp extends React.Component<
           onAddItem={this.handleAddition}
           onChange={this.handleChange}
         />
+        <Dropzone />
         <Form.Field required>
           <Button type="submit">Add</Button>
         </Form.Field>

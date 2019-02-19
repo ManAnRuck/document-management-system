@@ -9,7 +9,6 @@
       "**/react-native/**",
       "**/react-native-typescript-transformer",
       "**/react-native-typescript-transformer/**",
-      "**/styled-components",
       "**/@zeit",
       "**/@zeit/**"
     ]
