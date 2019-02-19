@@ -1,10 +1,10 @@
 module.exports = {
     "type": "postgres",
     "host": "localhost",
-    "port": 5432,
-    "username": "manuelruck",
-    "password": "",
-    "database": "dms",
+    "port": process.env.POSTGRESQL_PORT || 5555,
+    "username": process.env.POSTGRESQL_USER || "myuser",
+    "password": process.env.POSTGRESQL_PASSWORD || "mypassword",
+    "database": process.env.POSTGRESQL_DB || "dms",
     "synchronize": true,
     "logging": false,
     "entities": [
