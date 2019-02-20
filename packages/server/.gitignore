@@ -1,0 +1,11 @@
+###
+### Ignore
+###
+
+# File uploads
+uploads/*
+
+###
+### Do Not Ignore
+###
+!.gitkeep

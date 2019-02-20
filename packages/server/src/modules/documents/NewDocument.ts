@@ -46,7 +46,10 @@ export default class NewDocument {
             createWriteStream(`${__dirname}/../../../uploads/${file.filename}`),
           )
           .on('finish', () => resolve(true))
-          .on('error', () => reject(false));
+          .on('error', err => {
+            console.log(err);
+            return reject(false);
+          });
       });
 
       const document = Document.create();
@@ -55,7 +58,7 @@ export default class NewDocument {
       document.file = file.filename;
       return document.save();
     } catch (error) {
-      console.log('', error);
+      console.log('ERROR', error);
       return Document.create();
     }
   }
