@@ -12,15 +12,14 @@ const Wrapper = styled.div.attrs({ suppressClassNameWarning: true })`
   padding: 15px;
 `;
 
-class Dropzone extends React.Component {
-  public onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
-    console.log({ acceptedFiles, rejectedFiles });
-    // Do something with files
-  };
+interface Props {
+  onDrop: (acceptedFiles: File[], rejectedFiles: File[]) => void;
+}
 
+class Dropzone extends React.Component<Props> {
   public render() {
     return (
-      <ReactDropzone onDrop={this.onDrop}>
+      <ReactDropzone onDrop={this.props.onDrop}>
         {({ getRootProps, getInputProps, isDragActive }) => {
           return (
             <Wrapper {...getRootProps()}>

@@ -15,6 +15,7 @@ import { AllTagsAllTags } from '@docms/controller';
 export interface FormValues {
   title: string;
   tags: string[];
+  file: any;
 }
 
 interface FormErrors {
@@ -46,8 +47,14 @@ class Cmp extends React.Component<
     return setStatus({ ...status, currentValue: value as string });
   };
 
+  public onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
+    const { setFieldValue } = this.props;
+    // Do something with files
+    setFieldValue('file', acceptedFiles[0]);
+  };
+
   public render() {
-    const { handleSubmit, errors, status } = this.props;
+    const { handleSubmit, errors, status, values } = this.props;
     return (
       <Form
         onSubmit={handleSubmit}
@@ -69,7 +76,7 @@ class Cmp extends React.Component<
           onAddItem={this.handleAddition}
           onChange={this.handleChange}
         />
-        <Dropzone />
+        <Dropzone onDrop={this.onDrop} />
         <Form.Field required>
           <Button type="submit">Add</Button>
         </Form.Field>
@@ -90,13 +97,13 @@ export const RegisterForm = withFormik<Props, FormValues>({
       [],
     currentValue: [],
   }),
-  mapPropsToValues: () => ({ title: '', tags: [] }),
+  mapPropsToValues: () => ({ title: '', tags: [], file: null }),
   handleSubmit: async (values, { props, setErrors, setValues, resetForm }) => {
     const errors = await props.submit(values);
     if (errors) {
       setErrors(errors);
     } else {
-      setValues({ title: '', tags: [] });
+      setValues({ title: '', tags: [], file: null });
       resetForm();
     }
   },

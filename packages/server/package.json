@@ -25,6 +25,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "graphql": "^14.0.2",
+    "graphql-upload": "^8.0.4",
     "ioredis": "^4.3.0",
     "merge-graphql-schemas": "^1.5.7",
     "passport": "^0.4.0",

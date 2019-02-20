@@ -24,4 +24,8 @@ export default class Document extends BaseEntity {
   @ManyToMany(() => Tag, tag => tag.documents)
   @JoinTable()
   public tags: Tag[];
+
+  @Field()
+  @Column({ type: 'text' })
+  public file: string;
 }

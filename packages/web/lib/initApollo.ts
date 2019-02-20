@@ -1,7 +1,7 @@
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
-import { createHttpLink } from 'apollo-link-http';
+import { createUploadLink } from 'apollo-upload-client';
 import fetch from 'isomorphic-unfetch';
 import { isBrowser } from './isBrowser';
 
@@ -17,7 +17,7 @@ interface Options {
 }
 
 function create(initialState: any, { getToken }: Options) {
-  const httpLink = createHttpLink({
+  const uploadLink = createUploadLink({
     credentials: 'include',
     uri: 'http://localhost:4000/',
   });
@@ -36,7 +36,7 @@ function create(initialState: any, { getToken }: Options) {
   return new ApolloClient({
     cache: new InMemoryCache().restore(initialState || {}),
     connectToDevTools: isBrowser,
-    link: authLink.concat(httpLink),
+    link: authLink.concat(uploadLink),
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
   });
 }

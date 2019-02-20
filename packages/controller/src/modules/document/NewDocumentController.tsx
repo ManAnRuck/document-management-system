@@ -5,6 +5,7 @@ import { NewDocumentComponent } from '../apollo-components';
 interface FormValues {
   title: string;
   tags: string[];
+  file: any;
 }
 
 interface Errors {
@@ -30,6 +31,7 @@ export class NewDocumentController extends React.PureComponent<Props> {
                 variables: {
                   title: values.title,
                   tags: values.tags,
+                  file: values.file,
                 },
                 refetchQueries: this.props.refetchQueries,
               });
@@ -37,6 +39,7 @@ export class NewDocumentController extends React.PureComponent<Props> {
               this.props.succeded();
               return null;
             } catch (err) {
+              return null;
               const errors: Errors = {};
               err.graphQLErrors.forEach(
                 ({

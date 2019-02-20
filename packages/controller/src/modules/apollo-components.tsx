@@ -1,5 +1,8 @@
 export type Maybe<T> = T | null;
 
+/** The `Upload` scalar type represents a file upload. */
+export type Upload = any;
+
 // ====================================================
 // Documents
 // ====================================================
@@ -7,6 +10,7 @@ export type Maybe<T> = T | null;
 export type NewDocumentVariables = {
   title: string;
   tags?: Maybe<string[]>;
+  file: Upload;
 };
 
 export type NewDocumentMutation = {
@@ -140,8 +144,8 @@ import gql from 'graphql-tag';
 // ====================================================
 
 export const NewDocumentDocument = gql`
-  mutation newDocument($title: String!, $tags: [String!]) {
-    newDocument(title: $title, tags: $tags) {
+  mutation newDocument($title: String!, $tags: [String!], $file: Upload!) {
+    newDocument(title: $title, tags: $tags, file: $file) {
       id
       title
       tags {

@@ -8,5 +8,6 @@ const stories = storiesOf('Components/Form', module);
 stories.addDecorator(withKnobs).addDecorator(centered);
 
 stories.add('Dropzone', () => {
+  // @ts-ignore
   return <Dropzone />;
 });
