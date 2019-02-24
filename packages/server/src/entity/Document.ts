@@ -6,8 +6,10 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  OneToOne,
 } from 'typeorm';
 import Tag from './Tag';
+import File from './File';
 
 @ObjectType()
 @Entity()
@@ -25,7 +27,6 @@ export default class Document extends BaseEntity {
   @JoinTable()
   public tags: Tag[];
 
-  @Field()
-  @Column({ type: 'text' })
-  public file: string;
+  @OneToOne(() => File, file => file.document)
+  public file: File;
 }

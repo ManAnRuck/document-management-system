@@ -15,7 +15,7 @@ import { AllTagsAllTags } from '@docms/controller';
 export interface FormValues {
   title: string;
   tags: string[];
-  file: any;
+  file: File | undefined;
 }
 
 interface FormErrors {
@@ -47,14 +47,15 @@ class Cmp extends React.Component<
     return setStatus({ ...status, currentValue: value as string });
   };
 
-  public onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
+  public onDrop = (acceptedFiles: File[]) => {
     const { setFieldValue } = this.props;
     // Do something with files
+    console.log(acceptedFiles[0]);
     setFieldValue('file', acceptedFiles[0]);
   };
 
   public render() {
-    const { handleSubmit, errors, status, values } = this.props;
+    const { handleSubmit, errors, status } = this.props;
     return (
       <Form
         onSubmit={handleSubmit}
@@ -97,13 +98,13 @@ export const RegisterForm = withFormik<Props, FormValues>({
       [],
     currentValue: [],
   }),
-  mapPropsToValues: () => ({ title: '', tags: [], file: null }),
+  mapPropsToValues: () => ({ title: '', tags: [], file: undefined }),
   handleSubmit: async (values, { props, setErrors, setValues, resetForm }) => {
     const errors = await props.submit(values);
     if (errors) {
       setErrors(errors);
     } else {
-      setValues({ title: '', tags: [], file: null });
+      setValues({ title: '', tags: [], file: undefined });
       resetForm();
     }
   },

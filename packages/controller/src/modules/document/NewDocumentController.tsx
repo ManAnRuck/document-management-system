@@ -5,7 +5,7 @@ import { NewDocumentComponent } from '../apollo-components';
 interface FormValues {
   title: string;
   tags: string[];
-  file: any;
+  file: File;
 }
 
 interface Errors {
@@ -27,6 +27,7 @@ export class NewDocumentController extends React.PureComponent<Props> {
         {mutation => {
           const submit = async (values: FormValues) => {
             try {
+              console.log('VALUES', values);
               await mutation({
                 variables: {
                   title: values.title,
