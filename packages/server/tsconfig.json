@@ -1,19 +1,11 @@
 {
-    "extends": "../tsconfig.settings.json",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "outDir": "./dist",
-        "paths": {
-            "*": [
-                "src/types/*"
-            ]
-        },
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "strictPropertyInitialization": false,
-    },
-    "include": [
-        "./src/**/*.tsx",
-        "./src/**/*.ts"
-    ]
+  "extends": "../tsconfig.settings.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }

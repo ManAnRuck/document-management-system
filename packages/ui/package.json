@@ -17,6 +17,7 @@
   "dependencies": {
     "formik": "1.5.0",
     "react": "16.8.2",
+    "react-dropzone": "^8.1.0",
     "semantic-ui-calendar-react": "0.13.0",
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "0.85.0",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",

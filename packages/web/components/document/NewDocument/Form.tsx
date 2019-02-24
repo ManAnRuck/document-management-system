@@ -1,12 +1,21 @@
-import { registerValidationSchema } from '@docms/common';
-import { InputField } from '@docms/ui';
+import { newDocumentValidationSchema } from '@docms/common';
+import { InputField, Dropzone } from '@docms/ui';
 import { Field, FormikErrors, FormikProps, withFormik } from 'formik';
 import * as React from 'react';
-import { Button, Form, Message } from 'semantic-ui-react';
+import {
+  Button,
+  Form,
+  Message,
+  Dropdown,
+  DropdownProps,
+  DropdownItemProps,
+} from 'semantic-ui-react';
+import { AllTagsAllTags } from '@docms/controller';
 
 export interface FormValues {
-  email: string;
-  password: string;
+  title: string;
+  tags: string[];
+  file: File | undefined;
 }
 
 interface FormErrors {
@@ -17,48 +26,60 @@ export interface Props {
   submit: (
     values: FormValues,
   ) => Promise<FormikErrors<FormValues & FormErrors> | null>;
+  tags: AllTagsAllTags[];
 }
 
-interface Error {
-  path: string;
-  message: string;
-}
-
-export const normalizeErrors = (errors: Error[]) => {
-  const errMap: { [key: string]: string } = {};
-
-  errors.forEach(err => {
-    errMap[err.path] = err.message;
-  });
-
-  return errMap;
-};
-
-class C extends React.PureComponent<
+class Cmp extends React.Component<
   FormikProps<FormValues & FormErrors> & Props
 > {
+  public handleAddition = (_: any, { value }: DropdownProps) => {
+    const { setStatus, status } = this.props;
+    const newTag: DropdownItemProps = { text: value, value: value as string };
+    setStatus({
+      ...status,
+      tags: [...status.tags, newTag],
+    });
+  };
+
+  public handleChange = (_: any, { value }: DropdownProps) => {
+    const { setFieldValue, setStatus, status } = this.props;
+    setFieldValue('tags', value);
+    return setStatus({ ...status, currentValue: value as string });
+  };
+
+  public onDrop = (acceptedFiles: File[]) => {
+    const { setFieldValue } = this.props;
+    // Do something with files
+    console.log(acceptedFiles[0]);
+    setFieldValue('file', acceptedFiles[0]);
+  };
+
   public render() {
-    const { handleSubmit, errors } = this.props;
-    console.log(errors);
+    const { handleSubmit, errors, status } = this.props;
     return (
       <Form
         onSubmit={handleSubmit}
         error={!!errors}
-        data-testid="register-form"
+        data-testid="newDocument-form"
       >
         {errors.form && (
           <Message negative={!!errors.form}>{errors.form}</Message>
         )}
-        <Field name="email" label="E-Mail" required component={InputField} />
-        <Field
-          name="password"
-          type="password"
-          label="Passwort"
-          required
-          component={InputField}
+        <Field name="title" label="Title" required component={InputField} />
+        <Dropdown
+          placeholder="Tags"
+          fluid
+          multiple
+          search
+          selection
+          allowAdditions
+          options={status.tags}
+          onAddItem={this.handleAddition}
+          onChange={this.handleChange}
         />
+        <Dropzone onDrop={this.onDrop} />
         <Form.Field required>
-          <Button type="submit">LogIn / Register</Button>
+          <Button type="submit">Add</Button>
         </Form.Field>
       </Form>
     );
@@ -66,12 +87,25 @@ class C extends React.PureComponent<
 }
 
 export const RegisterForm = withFormik<Props, FormValues>({
-  validationSchema: registerValidationSchema,
-  mapPropsToValues: () => ({ email: '', password: '' }),
-  handleSubmit: async (values, { props, setErrors }) => {
+  validationSchema: newDocumentValidationSchema,
+  mapPropsToStatus: props => ({
+    tags:
+      (props.tags &&
+        props.tags.map(({ title }) => ({
+          text: title,
+          value: title,
+        }))) ||
+      [],
+    currentValue: [],
+  }),
+  mapPropsToValues: () => ({ title: '', tags: [], file: undefined }),
+  handleSubmit: async (values, { props, setErrors, setValues, resetForm }) => {
     const errors = await props.submit(values);
     if (errors) {
       setErrors(errors);
+    } else {
+      setValues({ title: '', tags: [], file: undefined });
+      resetForm();
     }
   },
-})(C);
+})(Cmp);

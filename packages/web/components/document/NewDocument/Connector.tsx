@@ -1,22 +1,32 @@
-import { meQuery, RegisterController } from '@docms/controller';
-import Router from 'next/router';
+import {
+  NewDocumentController,
+  documentsQuery,
+  AllTagsComponent,
+} from '@docms/controller';
 import * as React from 'react';
 import { RegisterForm } from './Form';
 
-export class RegisterConnector extends React.PureComponent {
+export class NewDocumentConnector extends React.PureComponent {
   public succeded = async () => {
-    Router.replace('/work');
     return null;
   };
 
   public render() {
     return (
-      <RegisterController
-        succeded={this.succeded}
-        refetchQueries={[{ query: meQuery }]}
-      >
-        {({ submit }) => <RegisterForm submit={submit} />}
-      </RegisterController>
+      <AllTagsComponent>
+        {({ data }) => {
+          return (
+            <NewDocumentController
+              succeded={this.succeded}
+              refetchQueries={[{ query: documentsQuery }]}
+            >
+              {({ submit }) => (
+                <RegisterForm submit={submit} tags={data!.allTags} />
+              )}
+            </NewDocumentController>
+          );
+        }}
+      </AllTagsComponent>
     );
   }
 }

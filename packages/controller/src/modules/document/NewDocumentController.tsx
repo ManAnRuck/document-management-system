@@ -5,6 +5,7 @@ import { NewDocumentComponent } from '../apollo-components';
 interface FormValues {
   title: string;
   tags: string[];
+  file: File;
 }
 
 interface Errors {
@@ -26,10 +27,12 @@ export class NewDocumentController extends React.PureComponent<Props> {
         {mutation => {
           const submit = async (values: FormValues) => {
             try {
+              console.log('VALUES', values);
               await mutation({
                 variables: {
                   title: values.title,
                   tags: values.tags,
+                  file: values.file,
                 },
                 refetchQueries: this.props.refetchQueries,
               });
@@ -37,6 +40,7 @@ export class NewDocumentController extends React.PureComponent<Props> {
               this.props.succeded();
               return null;
             } catch (err) {
+              return null;
               const errors: Errors = {};
               err.graphQLErrors.forEach(
                 ({

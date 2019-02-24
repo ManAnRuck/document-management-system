@@ -6,3 +6,6 @@ export * from './modules/document/NewDocumentController';
 
 // Queries
 export { default as meQuery } from './graphql/user/queries/me';
+export {
+  default as documentsQuery,
+} from './graphql/document/queries/documents';

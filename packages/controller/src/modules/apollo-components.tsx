@@ -1,5 +1,8 @@
 export type Maybe<T> = T | null;
 
+/** The `Upload` scalar type represents a file upload. */
+export type Upload = any;
+
 // ====================================================
 // Documents
 // ====================================================
@@ -7,6 +10,7 @@ export type Maybe<T> = T | null;
 export type NewDocumentVariables = {
   title: string;
   tags?: Maybe<string[]>;
+  file: Upload;
 };
 
 export type NewDocumentMutation = {
@@ -27,6 +31,46 @@ export type NewDocumentNewDocument = {
 
 export type NewDocumentTags = {
   __typename?: 'Tag';
+
+  title: string;
+};
+
+export type DocumentsVariables = {};
+
+export type DocumentsQuery = {
+  __typename?: 'Query';
+
+  documents: DocumentsDocuments[];
+};
+
+export type DocumentsDocuments = {
+  __typename?: 'Document';
+
+  id: string;
+
+  title: string;
+
+  tags: Maybe<DocumentsTags[]>;
+};
+
+export type DocumentsTags = {
+  __typename?: 'Tag';
+
+  title: string;
+};
+
+export type AllTagsVariables = {};
+
+export type AllTagsQuery = {
+  __typename?: 'Query';
+
+  allTags: AllTagsAllTags[];
+};
+
+export type AllTagsAllTags = {
+  __typename?: 'Tag';
+
+  id: string;
 
   title: string;
 };
@@ -100,8 +144,8 @@ import gql from 'graphql-tag';
 // ====================================================
 
 export const NewDocumentDocument = gql`
-  mutation newDocument($title: String!, $tags: [String!]) {
-    newDocument(title: $title, tags: $tags) {
+  mutation newDocument($title: String!, $tags: [String!], $file: Upload!) {
+    newDocument(title: $title, tags: $tags, file: $file) {
       id
       title
       tags {
@@ -146,6 +190,91 @@ export function NewDocumentHOC<TProps, TChildProps = any>(
     NewDocumentVariables,
     NewDocumentProps<TChildProps>
   >(NewDocumentDocument, operationOptions);
+}
+export const DocumentsDocument = gql`
+  query documents {
+    documents {
+      id
+      title
+      tags {
+        title
+      }
+    }
+  }
+`;
+export class DocumentsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<DocumentsQuery, DocumentsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<DocumentsQuery, DocumentsVariables>
+        query={DocumentsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type DocumentsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<DocumentsQuery, DocumentsVariables>
+> &
+  TChildProps;
+export function DocumentsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        DocumentsQuery,
+        DocumentsVariables,
+        DocumentsProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    DocumentsQuery,
+    DocumentsVariables,
+    DocumentsProps<TChildProps>
+  >(DocumentsDocument, operationOptions);
+}
+export const AllTagsDocument = gql`
+  query allTags {
+    allTags {
+      id
+      title
+    }
+  }
+`;
+export class AllTagsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<AllTagsQuery, AllTagsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<AllTagsQuery, AllTagsVariables>
+        query={AllTagsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type AllTagsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<AllTagsQuery, AllTagsVariables>
+> &
+  TChildProps;
+export function AllTagsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        AllTagsQuery,
+        AllTagsVariables,
+        AllTagsProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    AllTagsQuery,
+    AllTagsVariables,
+    AllTagsProps<TChildProps>
+  >(AllTagsDocument, operationOptions);
 }
 export const LogoutDocument = gql`
   mutation Logout {

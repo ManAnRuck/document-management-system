@@ -63,16 +63,27 @@ class DesktopContainer extends Component<SingletonRouter> {
             >
               <Container>
                 <Link href="/" passHref>
-                  <Menu.Item active={router!.asPath === '/'}>Home</Menu.Item>
+                  <Menu.Item
+                    active={router!.asPath === '/'}
+                    data-testid="menu-link-home"
+                  >
+                    Home
+                  </Menu.Item>
                 </Link>
                 <Link href="/work" passHref>
-                  <Menu.Item active={router!.asPath === '/work'}>
+                  <Menu.Item
+                    active={router!.asPath === '/work'}
+                    data-testid="menu-link-work"
+                  >
                     Work
                   </Menu.Item>
                 </Link>
-                <Link href="/company" passHref>
-                  <Menu.Item active={router!.asPath === '/company'}>
-                    Company
+                <Link href="/documents" passHref>
+                  <Menu.Item
+                    active={router!.asPath === '/documents'}
+                    data-testid="menu-link-documents"
+                  >
+                    Documents
                   </Menu.Item>
                 </Link>
                 <MeComponent>
