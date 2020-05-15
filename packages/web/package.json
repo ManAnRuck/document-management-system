@@ -19,7 +19,7 @@
         "@docms/ui": "1.0.0",
         "@types/cookie": "0.3.2",
         "@zeit/next-typescript": "1.1.1",
-        "apollo-cache-inmemory": "1.4.3",
+        "apollo-cache-inmemory": "1.6.6",
         "apollo-client": "2.4.13",
         "apollo-link-context": "1.0.14",
         "apollo-link-http": "1.5.11",
