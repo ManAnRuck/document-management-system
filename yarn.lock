@@ -18134,10 +18134,10 @@ typedi@^0.8.0:
   resolved "https://registry.yarnpkg.com/typedi/-/typedi-0.8.0.tgz#d8e203bd1d41a96e2b0a5c6295147d74b2b2d03e"
   integrity sha512-/c7Bxnm6eh5kXx2I+mTuO+2OvoWni5+rXA3PhXwVWCtJRYmz3hMok5s1AKLzoDvNAZqj/Q/acGstN0ri5aQoOA==
 
-typeorm-typedi-extensions@^0.2.1:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/typeorm-typedi-extensions/-/typeorm-typedi-extensions-0.2.3.tgz#94fca2656206d771bf6d2242f5aab570511188e8"
-  integrity sha512-T9i1NvRZNjPn9Jb8oT772ihfn6PwdqDVpzPCtKSqjkZGOgXrCkdyD3dDrzfMaoWJ1afU58bVx2CMb95FzT42Ow==
+typeorm-typedi-extensions@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/typeorm-typedi-extensions/-/typeorm-typedi-extensions-0.4.0.tgz#f59d2d338fb1930b67f3ff91fb88494c2806c296"
+  integrity sha512-DTD9D2MXmG3YSOJxojpftlPMQv5Wbj1PGao9Z5yHd+nG6llun1seYQxE2xomqsRubDMbyHc9FTLlPqdhBLJj8A==
 
 typeorm@^0.2.11:
   version "0.2.12"
