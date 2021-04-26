@@ -47,7 +47,7 @@
     "awesome-typescript-loader": "5.2.1",
     "babel-loader": "8.0.5",
     "babel-plugin-styled-components": "1.10.0",
-    "concurrently": "^4.1.0",
+    "concurrently": "^6.0.0",
     "file-loader": "3.0.1",
     "jest": "24.1.0",
     "nodemon": "1.18.10",
