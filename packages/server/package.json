@@ -17,7 +17,7 @@
     "@docms/common": "1.0.0",
     "apollo-server": "^2.4.0",
     "apollo-server-express": "^2.4.0",
-    "bcryptjs": "^2.4.3",
+    "bcryptjs": "^3.0.0",
     "config": "^3.0.1",
     "connect-redis": "^3.4.0",
     "cors": "^2.8.5",
@@ -40,7 +40,7 @@
     "typeorm-typedi-extensions": "^0.2.1"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
+    "@types/bcryptjs": "^3.0.0",
     "@types/config": "0.0.34",
     "@types/connect-redis": "0.0.8",
     "@types/dotenv-safe": "^5.0.3",
