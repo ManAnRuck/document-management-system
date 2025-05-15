@@ -18,7 +18,7 @@
     "apollo-server": "^2.4.0",
     "apollo-server-express": "^2.4.0",
     "bcryptjs": "^2.4.3",
-    "config": "^3.0.1",
+    "config": "^4.0.0",
     "connect-redis": "^3.4.0",
     "cors": "^2.8.5",
     "dotenv-safe": "^6.1.0",
